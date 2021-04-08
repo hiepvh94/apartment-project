@@ -1,0 +1,4 @@
+export default{
+    SET_INPUT_CODE: 'SET_INPUT_CODE',
+    SET_INPUT_AREA: 'SET_INPUT_AREA'
+}
