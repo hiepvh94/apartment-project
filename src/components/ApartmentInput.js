@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Field, reduxForm } from 'redux-form'
+import renderTextField from './formHelper/formTextField';
 
 export class ApartmentInput extends Component {
 
@@ -8,11 +10,18 @@ export class ApartmentInput extends Component {
             <div>
                 <div className="form-row">
                     <div className="form-group col-md-6">
-                        <label >Apartment code<span className="text-danger ml-1">(*)</span></label>
+                        {/* <label >Apartment code<span className="text-danger ml-1">(*)</span></label>
                         <input type="text" className="apart form-control text-right"
                             //  {... apartment.apartmentCode !== null?'visible':''}
                             placeholder="Nhập mã căn hộ" onChange={onChange}
-                            name="apartmentCode" defaultValue={apartment?.apartmentCode} />
+                            name="apartmentCode" defaultValue={apartment?.apartmentCode} /> */}
+                            <Field 
+                                id="apartmentCode"
+                                label="Apartment code"
+                                className="form-control text-right"
+                                name="apartmentCode"
+                                Component={renderTextField}
+                            />
                     </div>
                     <div className="form-group col-md-6">
                         <label>Area (m<sup>2</sup>)<span className="text-danger ml-1">(*)</span>
@@ -53,5 +62,16 @@ export class ApartmentInput extends Component {
         )
     }
 }
+
+
+// const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+//     <div>
+//       <label className="control-label">{label}</label>
+//       <div>
+//         <input {...input} placeholder={label} type={type} className="form-control" />
+//         {touched && ((error && <span className="text-danger">{error}</span>) || (warning && <span>{warning}</span>))}
+//       </div>
+//     </div>
+//   )
 
 export default ApartmentInput

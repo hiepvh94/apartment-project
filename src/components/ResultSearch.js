@@ -11,7 +11,7 @@ class ResultSearch extends React.Component {
 
     renderRecordDataItem = () => {
         let list = this.props.listItem;
-
+     
         if (list && !_.isEmpty(list)) {
             return list.map((item) =>
                 <Item item={item} />

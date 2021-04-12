@@ -1,17 +1,16 @@
-import { toast } from 'react-toastify';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialState = {
-    listApartment: [],
-
+    listApartment: []
 }
 
 
 const apartmentReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case 'getAllApartments': {
-            state.listApartment = action;
+        case 'getAllApartments': { 
+            state.listApartment = action.apartments;
             return state;
         }
 
@@ -23,17 +22,22 @@ const apartmentReducer = (state = initialState, action) => {
             return { ...state };
         }
         case 'addSuccess': {
-            const { successMessage } = action.payload;
+        
+            state.listApartment = [];
+            toast.success("Success Notification !", {
+                position: toast.POSITION.TOP_RIGHT
+              });
             return {
                 //...state,
-                message: successMessage
+                state
                 //initialState: data.concat(state)
             }
         }
         case 'addFailed': {
-            const { successError } = action.payload;
+            state.flag = action.payload;
+            
             return {
-                error: successError
+               state
             };
         }
         case 'deleteNewApartment': {

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import ApartmentInputComponent from '../../../components/ApartmentInput';
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 import * as apartmentAction from '../../../action/apartmentAction';
+
 
 export class CreateApartment extends Component {
     constructor(props) {
@@ -26,7 +27,7 @@ export class CreateApartment extends Component {
     }
 
     handleSaveApartment = () => {
-        
+
         //input data
         let apartmentInput = {
             apartmentCode: this.state.apartmentCode,
@@ -36,14 +37,15 @@ export class CreateApartment extends Component {
             balcony: this.state.balcony,
             towardTheMainDoor: this.state.towardTheMainDoor
         }
-           
+
         const { apartmentAction } = this.props;
         const { addNewApartment } = apartmentAction;
         addNewApartment(apartmentInput);
     }
 
     render() {
-        const { apartment } = this.state;
+        const apartment = this.props.state;
+
         return (
 
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -76,16 +78,16 @@ export class CreateApartment extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        state: state
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        // addNewApartment: (apartment) => dispatch
-        //     ({
-        //         type: 'addNewApartment',
-        //         payload: apartment
-        //     }
-        //     )
         apartmentAction: bindActionCreators(apartmentAction, dispatch)
     }
 };
 
-export default connect(null, mapDispatchToProps)(CreateApartment)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateApartment)

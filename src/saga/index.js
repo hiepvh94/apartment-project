@@ -7,7 +7,6 @@ function* watchFetchListAparmentAction() {
     while (true) {
         yield take('getAllApartments');
         const response = yield call(getList);   
-        //console.log(response.status)
         
         // const  list = response.data; 
         // response.data.map((item, index) => {
@@ -25,7 +24,7 @@ function* watchFetchListAparmentAction() {
         
 
         const { status, data } = response;
-        if (status === '200') { 
+        if (status == '200') {  
             yield put(getAllApartments(data))
         } else {
             console.log('error')
@@ -36,13 +35,13 @@ function* watchFetchListAparmentAction() {
 
 function* addApartment({ payload }) {
 
-    //  yield take('addNewApartment');
+    
     const newApartment = payload.newApartment;
     const response = yield call(addNew, newApartment);
     const { status, data } = response;
 
-    if (status === '200') {alert('success')
-        const successMessage = "success";
+    if (status === '200') {
+        const successMessage = "success";   
         yield put(addSuccess(successMessage))
     } else {
         const failedMessage = "failed";
